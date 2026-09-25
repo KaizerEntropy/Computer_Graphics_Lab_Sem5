@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>830</width>
+    <height>790</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="my_label" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>15</y>
+      <width>520</width>
+      <height>520</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="mouse_movement">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>15</y>
+      <width>230</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X : 0, Y : 0</string>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="gridLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>50</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Grid size:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>70</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="singleStep">
+     <number>2</number>
+    </property>
+    <property name="value">
+     <number>20</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>70</y>
+      <width>130</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reset Grid (10px)</string>
+    </property>
+   </widget>
+
+   <widget class="QPushButton" name="draw_line">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>105</y>
+      <width>230</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Line (between the 2 picked points)</string>
+    </property>
+   </widget>
+
+   <widget class="QPushButton" name="clear">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>140</y>
+      <width>230</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear Canvas</string>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="circleSectionLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>180</y>
+      <width>230</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Circle (click grid to pick centre)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="circleRadiusLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>202</y>
+      <width>75</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Radius:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="circleRadiusBox">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>200</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>500</number>
+    </property>
+    <property name="value">
+     <number>8</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="drawCirclePolar">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>228</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Circle - Polar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="drawCircleBresenham">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>258</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Circle - Bresenham (Midpoint)</string>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="ellipseSectionLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>296</y>
+      <width>230</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ellipse (click grid to pick centre)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ellipseRxLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>318</y>
+      <width>75</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rx:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="ellipseRxBox">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>316</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>500</number>
+    </property>
+    <property name="value">
+     <number>12</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ellipseRyLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>346</y>
+      <width>75</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ry:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="ellipseRyBox">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>344</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>500</number>
+    </property>
+    <property name="value">
+     <number>7</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="drawEllipsePolar">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>374</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Ellipse - Polar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="drawEllipseBresenham">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>404</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Ellipse - Bresenham (Midpoint)</string>
+    </property>
+   </widget>
+
+   <widget class="QPushButton" name="boundaryColorButton">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>442</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Boundary Colour...</string>
+    </property>
+   </widget>
+
+   <widget class="QPushButton" name="fillColorButton">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>472</y>
+      <width>230</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fill Colour...</string>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="algoLabel">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>506</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fill algorithm:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="algoCombo">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>526</y>
+      <width>230</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+
+   <widget class="QCheckBox" name="fillModeCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>558</y>
+      <width>230</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fill mode (click = seed point)</string>
+    </property>
+   </widget>
+
+   <widget class="QCheckBox" name="animateCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>582</y>
+      <width>230</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Animate fill</string>
+    </property>
+   </widget>
+
+   <widget class="QLabel" name="center_label">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>610</y>
+      <width>250</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>1) Lines: click 2 points, press Draw Line. Repeat to close the shape.
+2) Circle/Ellipse: click 1 point (centre), set radius or rx/ry, press Polar or Bresenham.
+3) Pick a fill colour + algorithm, tick "Fill mode", click inside the shape.</string>
+    </property>
+   </widget>
+
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>830</width>
+     <height>17</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>my_label</class>
+   <extends>QLabel</extends>
+   <header location="global">my_label.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

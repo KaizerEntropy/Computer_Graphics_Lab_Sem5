@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1450</width>
+    <height>940</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>2D Vector Transformations Studio (Homogeneous Coordinates 3x3)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainHLayout">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>8</number>
+    </property>
+    <property name="topMargin">
+     <number>8</number>
+    </property>
+    <property name="rightMargin">
+     <number>8</number>
+    </property>
+    <property name="bottomMargin">
+     <number>8</number>
+    </property>
+    <item>
+     <widget class="QScrollArea" name="leftControlScroll">
+      <property name="minimumSize">
+       <size>
+        <width>440</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>460</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="leftControlWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>442</width>
+         <height>1200</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="leftControlVLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+
+        <!-- 1. Selection & Scope -->
+        <item>
+         <widget class="QGroupBox" name="groupSelection">
+          <property name="title">
+           <string>1. Shape Selection &amp; Scope</string>
+          </property>
+          <layout class="QVBoxLayout" name="selectionLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblScopeInfo">
+             <property name="text">
+              <string>🌐 Current Scope: Entire Space / All Shapes</string>
+             </property>
+             <property name="styleSheet">
+              <string>color: #e3b341; font-weight: bold; font-size: 12px;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="selectDropdownLayout">
+             <item>
+              <widget class="QComboBox" name="comboSelectShape">
+               <item>
+                <property name="text">
+                 <string>🌐 Entire Space (All Shapes &amp; Grid)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnDeselectAll">
+               <property name="text">
+                <string>Select All</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblSelectHint">
+             <property name="text">
+              <string>💡 Right-click any shape on canvas to select it. Right-click empty grid to deselect.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string>color: #8b949e; font-size: 11px;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- Quick Command Input Bar -->
+        <item>
+         <widget class="QGroupBox" name="groupQuickCommand">
+          <property name="title">
+           <string>⚡ Quick Transform Command / Argument Input</string>
+          </property>
+          <layout class="QHBoxLayout" name="quickCmdLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="txtQuickCommand">
+             <property name="placeholderText">
+              <string>e.g. R 45, T 10 -5, S 2 1.5, Sh 0.5 0, RefLine 1 2</string>
+             </property>
+             <property name="styleSheet">
+              <string>font-family: monospace; font-size: 12px; color: #58a6ff;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnRunQuickCommand">
+             <property name="text">
+              <string>Run ↵</string>
+             </property>
+             <property name="styleSheet">
+              <string>background-color: #238636; color: #ffffff; font-weight: bold;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- 2. Transformations Toolkit (Tabs) -->
+        <item>
+         <widget class="QGroupBox" name="groupTransforms">
+          <property name="title">
+           <string>2. 2D Vector Transformations (3x3 Matrix)</string>
+          </property>
+          <layout class="QVBoxLayout" name="transformsVLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QTabWidget" name="tabTransforms">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+
+             <!-- TAB 1: Translation -->
+             <widget class="QWidget" name="tabTranslate">
+              <attribute name="title">
+               <string>↔ Translate</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="transLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QFormLayout" name="transForm">
+                 <item row="0" column="0"><widget class="QLabel" name="lblTx"><property name="text"><string>Translate X (tx):</string></property></widget></item>
+                 <item row="0" column="1"><widget class="QSpinBox" name="spinTx"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>5</number></property></widget></item>
+                 <item row="1" column="0"><widget class="QLabel" name="lblTy"><property name="text"><string>Translate Y (ty):</string></property></widget></item>
+                 <item row="1" column="1"><widget class="QSpinBox" name="spinTy"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>5</number></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnApplyTranslate">
+                 <property name="text"><string>▶ Apply Translation T(tx, ty) [Enter]</string></property>
+                 <property name="styleSheet"><string>background-color: #1f6feb; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="nudgeLayout">
+                 <item row="0" column="1"><widget class="QPushButton" name="btnNudgeUp"><property name="text"><string>▲ +Y (Up)</string></property></widget></item>
+                 <item row="1" column="0"><widget class="QPushButton" name="btnNudgeLeft"><property name="text"><string>◀ -X (Left)</string></property></widget></item>
+                 <item row="1" column="1"><widget class="QPushButton" name="btnNudgeReset"><property name="text"><string>(0,0)</string></property></widget></item>
+                 <item row="1" column="2"><widget class="QPushButton" name="btnNudgeRight"><property name="text"><string>+X (Right) ▶</string></property></widget></item>
+                 <item row="2" column="1"><widget class="QPushButton" name="btnNudgeDown"><property name="text"><string>▼ -Y (Down)</string></property></widget></item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+
+             <!-- TAB 2: Rotation -->
+             <widget class="QWidget" name="tabRotate">
+              <attribute name="title">
+               <string>🔄 Rotate</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="rotLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="rotAngleLayout">
+                 <item><widget class="QLabel" name="lblRotAngle"><property name="text"><string>Angle θ (degrees):</string></property></widget></item>
+                 <item><widget class="QDoubleSpinBox" name="spinRotAngle"><property name="decimals"><number>2</number></property><property name="minimum"><double>-3600.0</double></property><property name="maximum"><double>3600.0</double></property><property name="value"><double>45.0</double></property><property name="singleStep"><double>1.0</double></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupRotPivot">
+                 <property name="title"><string>Rotation Center (Pivot Point):</string></property>
+                 <layout class="QVBoxLayout" name="rotPivotVLayout">
+                  <item><widget class="QRadioButton" name="radioRotOrigin"><property name="text"><string>Origin (0, 0)</string></property><property name="checked"><bool>true</bool></property></widget></item>
+                  <item><widget class="QRadioButton" name="radioRotCentroid"><property name="text"><string>Shape Centroid</string></property></widget></item>
+                  <item><widget class="QRadioButton" name="radioRotCustom"><property name="text"><string>Arbitrary Point (xr, yr)</string></property></widget></item>
+                  <item>
+                   <layout class="QHBoxLayout" name="rotCustomCoordLayout">
+                    <item><widget class="QLabel" name="lblRotPx"><property name="text"><string>xr:</string></property></widget></item>
+                    <item><widget class="QSpinBox" name="spinRotPx"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                    <item><widget class="QLabel" name="lblRotPy"><property name="text"><string>yr:</string></property></widget></item>
+                    <item><widget class="QSpinBox" name="spinRotPy"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                    <item><widget class="QPushButton" name="btnPickPivot"><property name="text"><string>🎯 Pick</string></property></widget></item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnApplyRotate">
+                 <property name="text"><string>▶ Apply Rotation R(θ) [Enter]</string></property>
+                 <property name="styleSheet"><string>background-color: #1f6feb; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="quickRotLayout">
+                 <item><widget class="QPushButton" name="btnQuickRot45"><property name="text"><string>+45°</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickRotNeg45"><property name="text"><string>-45°</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickRot90"><property name="text"><string>+90°</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickRot180"><property name="text"><string>180°</string></property></widget></item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+
+             <!-- TAB 3: Scaling -->
+             <widget class="QWidget" name="tabScale">
+              <attribute name="title">
+               <string>🔍 Scale</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="scaleLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QFormLayout" name="scaleForm">
+                 <item row="0" column="0"><widget class="QLabel" name="lblSx"><property name="text"><string>Scale X (sx):</string></property></widget></item>
+                 <item row="0" column="1"><widget class="QDoubleSpinBox" name="spinScaleX"><property name="decimals"><number>3</number></property><property name="minimum"><double>-100.0</double></property><property name="maximum"><double>100.0</double></property><property name="value"><double>1.5</double></property><property name="singleStep"><double>0.1</double></property></widget></item>
+                 <item row="1" column="0"><widget class="QLabel" name="lblSy"><property name="text"><string>Scale Y (sy):</string></property></widget></item>
+                 <item row="1" column="1"><widget class="QDoubleSpinBox" name="spinScaleY"><property name="decimals"><number>3</number></property><property name="minimum"><double>-100.0</double></property><property name="maximum"><double>100.0</double></property><property name="value"><double>1.5</double></property><property name="singleStep"><double>0.1</double></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkUniformScale">
+                 <property name="text"><string>Lock Uniform Scaling (sx = sy)</string></property>
+                 <property name="checked"><bool>false</bool></property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupScaleFixed">
+                 <property name="title"><string>Fixed Reference Point:</string></property>
+                 <layout class="QVBoxLayout" name="scaleFixedVLayout">
+                  <item><widget class="QRadioButton" name="radioScaleOrigin"><property name="text"><string>Origin (0, 0)</string></property></widget></item>
+                  <item><widget class="QRadioButton" name="radioScaleCentroid"><property name="text"><string>Shape Centroid (Local Scale)</string></property><property name="checked"><bool>true</bool></property></widget></item>
+                  <item><widget class="QRadioButton" name="radioScaleCustom"><property name="text"><string>Arbitrary Point (xf, yf)</string></property></widget></item>
+                  <item>
+                   <layout class="QHBoxLayout" name="scaleCustomCoordLayout">
+                    <item><widget class="QLabel" name="lblScalePx"><property name="text"><string>xf:</string></property></widget></item>
+                    <item><widget class="QSpinBox" name="spinScalePx"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                    <item><widget class="QLabel" name="lblScalePy"><property name="text"><string>yf:</string></property></widget></item>
+                    <item><widget class="QSpinBox" name="spinScalePy"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnApplyScale">
+                 <property name="text"><string>▶ Apply Scaling S(sx, sy) [Enter]</string></property>
+                 <property name="styleSheet"><string>background-color: #1f6feb; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="quickScaleLayout">
+                 <item><widget class="QPushButton" name="btnQuickScale2"><property name="text"><string>2.0x</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickScaleHalf"><property name="text"><string>0.5x</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickScale15"><property name="text"><string>1.5x</string></property></widget></item>
+                 <item><widget class="QPushButton" name="btnQuickScaleFlip"><property name="text"><string>-1.0x</string></property></widget></item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+
+             <!-- TAB 4: Shearing -->
+             <widget class="QWidget" name="tabShear">
+              <attribute name="title">
+               <string>📐 Shear</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="shearLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <layout class="QFormLayout" name="shearForm">
+                 <item row="0" column="0"><widget class="QLabel" name="lblShx"><property name="text"><string>Shear X (shx):</string></property></widget></item>
+                 <item row="0" column="1"><widget class="QDoubleSpinBox" name="spinShearX"><property name="decimals"><number>3</number></property><property name="minimum"><double>-100.0</double></property><property name="maximum"><double>100.0</double></property><property name="value"><double>0.5</double></property><property name="singleStep"><double>0.1</double></property></widget></item>
+                 <item row="1" column="0"><widget class="QLabel" name="lblShy"><property name="text"><string>Shear Y (shy):</string></property></widget></item>
+                 <item row="1" column="1"><widget class="QDoubleSpinBox" name="spinShearY"><property name="decimals"><number>3</number></property><property name="minimum"><double>-100.0</double></property><property name="maximum"><double>100.0</double></property><property name="value"><double>0.0</double></property><property name="singleStep"><double>0.1</double></property></widget></item>
+                 <item row="2" column="0"><widget class="QLabel" name="lblYref"><property name="text"><string>Ref Line yref:</string></property></widget></item>
+                 <item row="2" column="1"><widget class="QSpinBox" name="spinShearYRef"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                 <item row="3" column="0"><widget class="QLabel" name="lblXref"><property name="text"><string>Ref Line xref:</string></property></widget></item>
+                 <item row="3" column="1"><widget class="QSpinBox" name="spinShearXRef"><property name="minimum"><number>-1000</number></property><property name="maximum"><number>1000</number></property><property name="value"><number>0</number></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnApplyShear">
+                 <property name="text"><string>▶ Apply Shearing Sh(shx, shy) [Enter]</string></property>
+                 <property name="styleSheet"><string>background-color: #1f6feb; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+
+             <!-- TAB 5: Reflection -->
+             <widget class="QWidget" name="tabReflect">
+              <attribute name="title">
+               <string>🪞 Reflect</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="reflectLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="lblStandardRefTitle"><property name="text"><string>Standard Axis Reflections:</string></property></widget>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="stdReflectGrid">
+                 <item row="0" column="0"><widget class="QPushButton" name="btnReflectX"><property name="text"><string>X-Axis (y=0)</string></property></widget></item>
+                 <item row="0" column="1"><widget class="QPushButton" name="btnReflectY"><property name="text"><string>Y-Axis (x=0)</string></property></widget></item>
+                 <item row="1" column="0"><widget class="QPushButton" name="btnReflectOrigin"><property name="text"><string>Origin (0,0)</string></property></widget></item>
+                 <item row="1" column="1"><widget class="QPushButton" name="btnReflectLineYeqX"><property name="text"><string>Line y = x</string></property></widget></item>
+                 <item row="2" column="0" colspan="2"><widget class="QPushButton" name="btnReflectLineYeqNegX"><property name="text"><string>Line y = -x</string></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupArbitraryLine">
+                 <property name="title"><string>Reflection wrt Arbitrary Line (y = mx + c):</string></property>
+                 <layout class="QVBoxLayout" name="arbLineVLayout">
+                  <item>
+                   <layout class="QFormLayout" name="arbLineForm">
+                    <item row="0" column="0"><widget class="QLabel" name="lblSlope"><property name="text"><string>Slope (m):</string></property></widget></item>
+                    <item row="0" column="1"><widget class="QDoubleSpinBox" name="spinReflectSlope"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>1.0</double></property><property name="singleStep"><double>0.5</double></property></widget></item>
+                    <item row="1" column="0"><widget class="QLabel" name="lblIntercept"><property name="text"><string>Intercept (c):</string></property></widget></item>
+                    <item row="1" column="1"><widget class="QDoubleSpinBox" name="spinReflectIntercept"><property name="decimals"><number>2</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property><property name="singleStep"><double>1.0</double></property></widget></item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="arbLineToolsLayout">
+                    <item><widget class="QPushButton" name="btnPickReflectLine"><property name="text"><string>📐 2 Points</string></property></widget></item>
+                    <item><widget class="QPushButton" name="btnApplyReflectArbitrary"><property name="text"><string>▶ Reflect Across Line</string></property><property name="styleSheet"><string>background-color: #238636; color: #ffffff; font-weight: bold;</string></property></widget></item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+
+             <!-- TAB 6: Custom 3x3 Matrix Input -->
+             <widget class="QWidget" name="tabCustomMatrix">
+              <attribute name="title">
+               <string>🔲 Custom 3x3</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="customMatLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="lblCustomMatInfo">
+                 <property name="text">
+                  <string>Directly enter 3x3 Matrix Coefficients:</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string>color: #58a6ff; font-weight: bold;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="customMatrixGrid">
+                 <item row="0" column="0"><widget class="QDoubleSpinBox" name="spinM00"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>1.0</double></property></widget></item>
+                 <item row="0" column="1"><widget class="QDoubleSpinBox" name="spinM01"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+                 <item row="0" column="2"><widget class="QDoubleSpinBox" name="spinM02"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+
+                 <item row="1" column="0"><widget class="QDoubleSpinBox" name="spinM10"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+                 <item row="1" column="1"><widget class="QDoubleSpinBox" name="spinM11"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>1.0</double></property></widget></item>
+                 <item row="1" column="2"><widget class="QDoubleSpinBox" name="spinM12"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+
+                 <item row="2" column="0"><widget class="QDoubleSpinBox" name="spinM20"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+                 <item row="2" column="1"><widget class="QDoubleSpinBox" name="spinM21"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>0.0</double></property></widget></item>
+                 <item row="2" column="2"><widget class="QDoubleSpinBox" name="spinM22"><property name="decimals"><number>3</number></property><property name="minimum"><double>-1000.0</double></property><property name="maximum"><double>1000.0</double></property><property name="value"><double>1.0</double></property></widget></item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnApplyCustomMatrix">
+                 <property name="text"><string>▶ Apply Custom 3x3 Matrix</string></property>
+                 <property name="styleSheet"><string>background-color: #238636; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- 3. Fill Algorithms -->
+        <item>
+         <widget class="QGroupBox" name="groupFills">
+          <property name="title">
+           <string>3. Integrated Fill Algorithms</string>
+          </property>
+          <layout class="QVBoxLayout" name="fillsLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QComboBox" name="comboFillAlgorithm">
+             <item><property name="text"><string>✨ Scanline Polygon Fill (AET)</string></property></item>
+             <item><property name="text"><string>🎨 8-Way Boundary Fill (BFS Wavefront)</string></property></item>
+             <item><property name="text"><string>🎨 8-Way Boundary Fill (DFS Stack)</string></property></item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="fillActionLayout">
+             <item>
+              <widget class="QPushButton" name="btnExecuteFill">
+               <property name="text"><string>▶ Execute Fill</string></property>
+               <property name="styleSheet"><string>background-color: #1f6feb; color: #ffffff; font-weight: bold; padding: 6px;</string></property>
+              </widget>
+             </item>
+             <item><widget class="QPushButton" name="btnClearFill"><property name="text"><string>Clear Fill</string></property></widget></item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- 4. Shape Tools & Presets -->
+        <item>
+         <widget class="QGroupBox" name="groupShapes">
+          <property name="title">
+           <string>4. Shape Tools &amp; Presets</string>
+          </property>
+          <layout class="QVBoxLayout" name="shapesVLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <layout class="QGridLayout" name="shapeButtonsGrid">
+             <item row="0" column="0"><widget class="QPushButton" name="btnDrawPolygon"><property name="text"><string>✏ Draw Poly</string></property></widget></item>
+             <item row="0" column="1"><widget class="QPushButton" name="btnDrawCircle"><property name="text"><string>⚪ Draw Circle</string></property></widget></item>
+             <item row="1" column="0"><widget class="QPushButton" name="btnClosePolygon"><property name="text"><string>✔ Close Poly</string></property><property name="styleSheet"><string>background-color: #238636; color: #ffffff;</string></property></widget></item>
+             <item row="1" column="1"><widget class="QPushButton" name="btnUndoShape"><property name="text"><string>↶ Undo Shape</string></property></widget></item>
+            </layout>
+           </item>
+           <item><widget class="QLabel" name="lblPresetsHeader"><property name="text"><string>Load Geometric Presets:</string></property></widget></item>
+           <item>
+            <layout class="QGridLayout" name="presetsGrid">
+             <item row="0" column="0"><widget class="QPushButton" name="btnPresetTriangle"><property name="text"><string>Triangle (3-gon)</string></property></widget></item>
+             <item row="0" column="1"><widget class="QPushButton" name="btnPresetConvex"><property name="text"><string>Convex (5-gon)</string></property></widget></item>
+             <item row="1" column="0"><widget class="QPushButton" name="btnPresetHouse"><property name="text"><string>House / Pentagon</string></property></widget></item>
+             <item row="1" column="1"><widget class="QPushButton" name="btnPresetStar"><property name="text"><string>5-Point Star</string></property></widget></item>
+             <item row="2" column="0"><widget class="QPushButton" name="btnPresetConcave"><property name="text"><string>Concave Arrow</string></property></widget></item>
+             <item row="2" column="1"><widget class="QPushButton" name="btnPresetNested"><property name="text"><string>🍩 Nested Donut</string></property></widget></item>
+             <item row="3" column="0" colspan="2"><widget class="QPushButton" name="btnPresetMultiScene"><property name="text"><string>🎭 Multi-Scene (2 Polys + Circle)</string></property><property name="styleSheet"><string>background-color: #21262d; border: 1px solid #2ea043; color: #2ea043; font-weight: bold;</string></property></widget></item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </widget>
+    </item>
+
+    <!-- CENTER & RIGHT: Canvas + Matrix Inspector -->
+    <item>
+     <layout class="QVBoxLayout" name="canvasAndMatrixVLayout">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+
+      <!-- Canvas Widget -->
+      <item>
+       <widget class="Canvas" name="canvasWidget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+
+      <!-- Bottom Dashboard: Matrix Inspector & History -->
+      <item>
+       <layout class="QHBoxLayout" name="bottomDashboardLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+
+        <!-- 3x3 Homogeneous Matrix Box -->
+        <item>
+         <widget class="QGroupBox" name="groupMatrixViewer">
+          <property name="title">
+           <string>📐 Active 3x3 Homogeneous Transformation Matrix [M]</string>
+          </property>
+          <layout class="QVBoxLayout" name="matrixBoxVLayout">
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblMatrixFormula">
+             <property name="text">
+              <string>M_composite = I (Identity)</string>
+             </property>
+             <property name="styleSheet">
+              <string>color: #e3b341; font-weight: bold; font-family: monospace; font-size: 12px;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="txtMatrixDisplay">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="maximumHeight">
+              <number>110</number>
+             </property>
+             <property name="styleSheet">
+              <string>background-color: #0d1117; border: 1px solid #30363d; font-family: monospace; font-size: 12px;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="matrixActionsLayout">
+             <item><widget class="QLabel" name="lblMatrixDet"><property name="text"><string>Det(M): 1.000</string></property><property name="styleSheet"><string>color: #8b949e; font-size: 11px;</string></property></widget></item>
+             <item><spacer><property name="orientation"><enum>Qt::Horizontal</enum></property></spacer></item>
+             <item><widget class="QPushButton" name="btnUndoTransform"><property name="text"><string>↶ Undo Step</string></property></widget></item>
+             <item><widget class="QPushButton" name="btnResetTransform"><property name="text"><string>🔄 Reset Matrix (I)</string></property><property name="styleSheet"><string>color: #ff7b72;</string></property></widget></item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- Transformation History Log -->
+        <item>
+         <widget class="QGroupBox" name="groupHistory">
+          <property name="title">
+           <string>📋 Transformation Pipeline History</string>
+          </property>
+          <layout class="QVBoxLayout" name="historyVLayout">
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QTableWidget" name="tableHistory">
+             <property name="maximumHeight">
+              <number>110</number>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text"><string>Step #</string></property>
+             </column>
+             <column>
+              <property name="text"><string>Transformation</string></property>
+             </column>
+             <column>
+              <property name="text"><string>Parameters / Formula</string></property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- View Controls & Overlays -->
+        <item>
+         <widget class="QGroupBox" name="groupView">
+          <property name="title">
+           <string>👁 Display &amp; Overlays</string>
+          </property>
+          <layout class="QGridLayout" name="viewGridLayout">
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item row="0" column="0"><widget class="QCheckBox" name="chkShowGhost"><property name="text"><string>Show Ghost (Pre-Transform)</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="0" column="1"><widget class="QCheckBox" name="chkShowPivot"><property name="text"><string>Show Pivot Point</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="1" column="0"><widget class="QCheckBox" name="chkShowReflectLine"><property name="text"><string>Show Reflection Line</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="1" column="1"><widget class="QCheckBox" name="chkShowLabels"><property name="text"><string>Show Vertex Labels</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="2" column="0"><widget class="QCheckBox" name="chkShowGrid"><property name="text"><string>Show Grid</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="2" column="1"><widget class="QCheckBox" name="chkShowAxes"><property name="text"><string>Show Axes</string></property><property name="checked"><bool>true</bool></property></widget></item>
+           <item row="3" column="0"><widget class="QLabel" name="lblGridSize"><property name="text"><string>Grid Cell Size:</string></property></widget></item>
+           <item row="3" column="1"><widget class="QSpinBox" name="spinGridSize"><property name="minimum"><number>6</number></property><property name="maximum"><number>50</number></property><property name="value"><number>14</number></property></widget></item>
+           <item row="4" column="0" colspan="2"><widget class="QPushButton" name="btnClearAll"><property name="text"><string>✖ Clear All (Shapes &amp; Fills)</string></property></widget></item>
+          </layout>
+         </widget>
+        </item>
+
+       </layout>
+      </item>
+
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Canvas</class>
+   <extends>QWidget</extends>
+   <header>canvas.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

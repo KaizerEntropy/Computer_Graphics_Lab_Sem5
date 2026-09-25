@@ -1,0 +1,18 @@
+Assignment-2
+Course: Computer Graphics Lab
+Semester: B.C.S.E. Third Year
+Objective:
+Implement a circle drawing algorithm to draw a circle with a given radius in the raster
+grid using a) Polar b) Bresenham’s Midpoint c) Cartesian circle drawing algorithm. Show
+Eight points symmetry using animation and check execution time.
+Submission Guidelines:
+• Submit your entire Qt project folder.
+• Include an assignment report.
+Submission Deadline:
+• Submission Deadline for Group (A1): 18/08/2026
+• Submission Deadline for Group (A2): 20/08/2026
+• Submission Deadline for Group (A3): 21/08/2026
+
+1
+
+
